@@ -3,6 +3,7 @@ import cors from 'cors';
 import pino from 'pino-http';
 import { getEnvVar } from './utils/getEnvVar.js';
 import { ENV_VAR } from './constants/env.js';
+import { getAllContacts, getContactById } from './services/contacts.js';
 
 const PORT = getEnvVar(ENV_VAR.PORT, 3000);
 export const setupServer = () => {
@@ -18,13 +19,44 @@ export const setupServer = () => {
       },
     }),
   );
-  app.use((req, res, next) => {
+
+  app.get('/', (req, res) => {
+    res.json({
+      message: 'Hello, Home Page!',
+    });
     console.log(`Time: ${new Date().toLocaleString()}`);
     console.log('====================================');
   });
 
-  app.use('*', (req, res, next) => {
-    res.statusMessage(404).json({
+  app.get('/contacts', async (req, res) => {
+    const contacts = await getAllContacts();
+    res.json({
+      status: 200,
+      message: 'Successfully found contacts!',
+      data: contacts,
+    });
+  });
+
+  app.get('/contacts/:contactId', async (req, res) => {
+    const { contactId } = req.params;
+
+    const contact = await getContactById(contactId);
+    if (!contact) {
+      res.status(404).json({
+        message: 'Contact not found',
+      });
+      return;
+    }
+
+    res.json({
+      status: 200,
+      message: `Successfully found contact with id ${contactId}!`,
+      data: contact,
+    });
+  });
+
+  app.use("*", (req, res, next) => {
+    res.status(404).json({
       message: 'Not Found',
     });
   });
@@ -40,3 +72,5 @@ export const setupServer = () => {
     console.log('====================================');
   });
 };
+
+export default setupServer;
