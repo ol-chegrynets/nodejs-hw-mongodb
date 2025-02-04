@@ -26,6 +26,7 @@ export const updateContact = async (contactId, payload, options = {}) => {
     },
   );
 
+
   return rawResult.value;
 };
 
