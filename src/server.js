@@ -8,6 +8,7 @@ import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import router from './routers/index.js';
 
 const PORT = getEnvVar(ENV_VAR.PORT, 3000);
+
 export const setupServer = () => {
   const app = express();
 
