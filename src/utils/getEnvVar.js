@@ -1,6 +1,6 @@
-// import 'dotenv/config';
-import dotenv from 'dotenv';
-dotenv.config();
+import 'dotenv/config';
+// import dotenv from 'dotenv';
+// dotenv.config();
 
 export const getEnvVar = (envName, defaultPort) => {
   const envVar = process.env[envName];
