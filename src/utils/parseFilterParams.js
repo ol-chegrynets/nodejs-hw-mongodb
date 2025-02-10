@@ -1,15 +1,15 @@
+import { WORK_SPACE } from '../constants/workSpace.js';
+
 const parseContactType = (contactType) => {
   if (!(typeof contactType === 'string')) return;
   const isContactType = (contactType) =>
-    ['work', 'home', 'personal'].includes(contactType);
+    Object.values(WORK_SPACE).includes(contactType);
 
   if (isContactType(contactType)) return contactType;
 };
 
 const parseIsFavorite = (isFavourite) => {
-  if (!(typeof isFavourite === 'boolean')) return;
-
-  return isFavourite;
+  if ([true, false].includes(isFavourite)) return JSON.parse(isFavourite);
 };
 
 export const parseFilterParams = (query) => {
