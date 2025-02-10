@@ -10,9 +10,10 @@ const parseContactType = (contactType) => {
 
 
 const parseIsFavourite = (isFavourite) => {
+  if (!(typeof isFavourite === 'string')) return;
 
-  if ([true, false].includes(isFavourite)) return JSON.parse(isFavourite);
-};
+  if (['true', 'false'].includes(isFavourite)) return JSON.parse(isFavourite);
+
 
 export const parseFilterParams = (query) => {
   const { contactType, isFavourite } = query;
