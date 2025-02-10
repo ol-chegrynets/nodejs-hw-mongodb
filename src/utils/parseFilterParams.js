@@ -8,7 +8,9 @@ const parseContactType = (contactType) => {
   if (isContactType(contactType)) return contactType;
 };
 
+
 const parseIsFavourite = (isFavourite) => {
+
   if ([true, false].includes(isFavourite)) return JSON.parse(isFavourite);
 };
 
