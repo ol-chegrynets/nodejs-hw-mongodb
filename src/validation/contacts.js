@@ -30,6 +30,7 @@ export const createContactSchema = Joi.object({
 });
 
 export const updateContactSchema = Joi.object({
+  userId: Joi.string(),
   name: Joi.string().min(3).max(20),
   phoneNumber: Joi.number().integer(),
   email: Joi.string().email({ minDomainSegments: 2 }),
