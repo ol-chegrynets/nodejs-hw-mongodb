@@ -79,6 +79,7 @@ export const refreshUsersSession = async ({ sessionId, refreshToken }) => {
     userId: session.userId,
     ...newSession,
   });
+
 };
 
 export const logoutUser = async (sessionId) => {

@@ -65,6 +65,7 @@ export const refreshUserSessionController = async (req, res) => {
   });
 };
 
+
 export const logoutUserController = async (req, res) => {
   if (req.cookies.sessionId) {
     await logoutUser(req.cookies.sessionId);
@@ -75,3 +76,4 @@ export const logoutUserController = async (req, res) => {
 
   res.status(204).send();
 };
+
