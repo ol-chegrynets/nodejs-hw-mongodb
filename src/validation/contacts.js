@@ -1,6 +1,5 @@
 import Joi from 'joi';
 import { WORK_SPACE } from '../constants/workSpace.js';
-import { isValidObjectId } from 'mongoose';
 
 const nameMessage = {
   'string.base': 'Username should be a string', // Кастомізація повідомлення для типу "string"
@@ -30,6 +29,7 @@ export const createContactSchema = Joi.object({
 });
 
 export const updateContactSchema = Joi.object({
+  userId: Joi.string(),
   name: Joi.string().min(3).max(20),
   phoneNumber: Joi.number().integer(),
   email: Joi.string().email({ minDomainSegments: 2 }),
