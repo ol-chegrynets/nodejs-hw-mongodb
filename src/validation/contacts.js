@@ -1,5 +1,6 @@
 import Joi from 'joi';
 import { WORK_SPACE } from '../constants/workSpace.js';
+import { isValidObjectId } from 'mongoose';
 
 const nameMessage = {
   'string.base': 'Username should be a string', // Кастомізація повідомлення для типу "string"
