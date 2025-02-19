@@ -13,12 +13,12 @@ import {
   updateContactSchema,
 } from '../validation/contacts.js';
 import { isValidId } from '../middlewares/isValidId.js';
+import jsonParser from '../middlewares/jsonParser.js';
+import { authenticate } from '../middlewares/authenticate.js';
 
 const contactsRouter = express.Router();
-const jsonParser = express.json({
-  type: ['application/json', 'application/vnd.api+json'],
-  limit: '100kb',
-});
+
+contactsRouter.use(authenticate);
 
 contactsRouter.get('/', ctrlWrapper(getContactsController));
 
