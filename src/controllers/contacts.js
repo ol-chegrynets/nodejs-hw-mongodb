@@ -1,3 +1,4 @@
+import createHttpError from 'http-errors';
 import { missingValue } from '../middlewares/missingValue.js';
 import {
   createContact,
@@ -14,8 +15,10 @@ export const getContactsController = async (req, res) => {
   const { page, perPage } = parsePaginationParams(req.query);
   const { sortBy, sortOrder } = parseSortParams(req.query);
   const filter = parseFilterParams(req.query);
+  const userId = req.user._id;
 
   const contacts = await getAllContacts({
+    userId,
     page,
     perPage,
     sortBy,
@@ -32,8 +35,9 @@ export const getContactsController = async (req, res) => {
 
 export const getContactByIdController = async (req, res) => {
   const { contactId } = req.params;
+  const userId = req.user._id;
 
-  const contact = await getContactById(contactId);
+  const contact = await getContactById(contactId, userId);
 
   missingValue(contact);
 
@@ -45,9 +49,10 @@ export const getContactByIdController = async (req, res) => {
 };
 
 export const deleteContactController = async (req, res) => {
+  const userId = req.user._id;
   const { contactId } = req.params;
 
-  const contact = await deleteContact(contactId);
+  const contact = await deleteContact(contactId, userId);
 
   missingValue(contact);
 
@@ -55,7 +60,9 @@ export const deleteContactController = async (req, res) => {
 };
 
 export const createContactController = async (req, res, next) => {
-  const contact = await createContact(req.body);
+  const userId = req.user._id;
+
+  const contact = await createContact({ ...req.body, userId });
 
   res.status(201).json({
     status: 201,
@@ -65,9 +72,13 @@ export const createContactController = async (req, res, next) => {
 };
 
 export const patchContactController = async (req, res, next) => {
-  const { contactId } = req.params;
+  const userId = req.user._id;
+  if (!userId) {
+    throw createHttpError(400, 'User is not authenticated');
+  }
 
-  const result = await updateContact(contactId, req.body);
+  const { contactId } = req.params;
+  const result = await updateContact({ userId, _id: contactId }, req.body);
 
   missingValue(result);
 
