@@ -1,3 +1,4 @@
+import createHttpError from 'http-errors';
 import { SORT_ORDER } from '../constants/sortOrder.js';
 import ContactsCollection from '../db/models/contacts.js';
 import { calculatePaginationData } from '../utils/calculatePaginationData.js';
@@ -41,7 +42,7 @@ export const getAllContacts = async ({
 };
 
 export const getContactById = async (contactId, userId) => {
-  const contact = await ContactsCollection.findById({
+  const contact = await ContactsCollection.findOne({
     _id: contactId,
     userId,
   });
@@ -53,9 +54,13 @@ export const createContact = async (payload) => {
   return contact;
 };
 
-export const updateContact = async (contactId, payload, options = {}) => {
+export const updateContact = async (
+  { userId, _id: contactId },
+  payload,
+  options = {},
+) => {
   const rawResult = await ContactsCollection.findOneAndUpdate(
-    { _id: contactId },
+    { userId, _id: contactId },
     payload,
     {
       new: true,
@@ -63,6 +68,10 @@ export const updateContact = async (contactId, payload, options = {}) => {
       ...options,
     },
   );
+
+  if (!rawResult.value) {
+    throw createHttpError(404, 'Contact not found');
+  }
 
   return rawResult.value;
 };
