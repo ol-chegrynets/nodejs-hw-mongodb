@@ -2,6 +2,7 @@ import createHttpError from 'http-errors';
 import { SORT_ORDER } from '../constants/sortOrder.js';
 import ContactsCollection from '../db/models/contacts.js';
 import { calculatePaginationData } from '../utils/calculatePaginationData.js';
+import { missingValue } from '../middlewares/missingValue.js';
 
 export const getAllContacts = async ({
   userId,
@@ -68,10 +69,7 @@ export const updateContact = async (
       ...options,
     },
   );
-
-  if (!rawResult.value) {
-    throw createHttpError(404, 'Contact not found');
-  }
+  missingValue(rawResult.value, 404, 'Contact not found!');
 
   return rawResult.value;
 };
