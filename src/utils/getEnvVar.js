@@ -9,5 +9,5 @@ export const getEnvVar = (envName, defaultPort) => {
 
   if (defaultPort) return defaultPort;
 
-  throw new Error(`Environment variable with name ${envVar} is not set.`);
+  throw new Error(`Environment variable with name ${envName} is not set.`);
 };
