@@ -51,3 +51,5 @@ contactsRouter.delete(
   isValidId,
   ctrlWrapper(deleteContactController),
 );
+
+export default contactsRouter;
