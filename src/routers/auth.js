@@ -42,6 +42,7 @@ authRouter.post(
 authRouter.post('/logout', jsonParser, ctrlWrapper(logoutUserController));
 authRouter.post(
   '/send-reset-email',
+  jsonParser,
   validateBody(requestResetEmailSchema),
   ctrlWrapper(requestResetEmailController),
 );
@@ -51,7 +52,7 @@ authRouter.post(
   ctrlWrapper(resetPasswordController),
 );
 
-authRouter.get('/get-oauth-url', ctrlWrapper(getGoogleOAuthUrlController));
+authRouter.post('/get-oauth-url', ctrlWrapper(getGoogleOAuthUrlController));
 
 authRouter.post(
   '/confirm-oauth',

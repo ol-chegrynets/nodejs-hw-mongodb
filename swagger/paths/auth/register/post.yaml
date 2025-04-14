@@ -50,12 +50,12 @@ responses:
               properties:
                 _id:
                   type: string
-                  example: '67a922f08b67cd59113534c1'
+                  example: '67b4adcf0754f7c8ab98298e'
                 name:
                   type: string
-                  example: 'Igor Tymchuk'
+                  example: 'Yulia Shevchenko'
                 email:
                   type: string
-                  example: 'hello@world.com'
+                  example: 'oleh1@example.com'
   '409':
     $ref: ../../../components/responses/409.yaml
