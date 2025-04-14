@@ -51,7 +51,8 @@ paths:
   /auth/reset-pwd:
     post:
       $ref: ../swagger/paths/auth/reset-pwd/post.yaml
-components:schemas:
+components:
+  schemas:
     user:
       $ref: ../swagger/components/schemas/user.yaml
   securitySchemes:
