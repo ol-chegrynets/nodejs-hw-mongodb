@@ -29,7 +29,7 @@ responses:
               properties:
                 accessToken:
                   type: string
-                  example: '2zQaqOpj5WrfbR32j0UAh7WAtaIoaRYkYNVZKg6T'
+                  example: 'H6Vqr1OXJz3gs/khfkTyJmqCBU1+ZLgTedUs/4K5'
   '401':
     description: Unauthorized error
     content:

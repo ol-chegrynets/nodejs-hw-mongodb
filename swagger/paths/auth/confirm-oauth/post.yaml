@@ -40,4 +40,4 @@ responses:
               properties:
                 accessToken:
                   type: string
-                  example: 'IjwqHilOmfp8v0acuSSTuiEsYDH3x3CuOY84Wvxf'
+                  example: 'H6Vqr1OXJz3gs/khfkTyJmqCBU1+ZLgTedUs/4K5'

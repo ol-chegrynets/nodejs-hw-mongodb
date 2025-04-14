@@ -29,4 +29,4 @@ responses:
               properties:
                 url:
                   type: string
-                  example: 'https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&response_type=code&client_id=1009566289844-rasqo982n443uj1vr7jeu1gu8tdqrleq.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fconfirm-google-auth'
+                  example: https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&response_type=code&client_id=197837377040-rs7oi2bgneu1qi4om836rf6fbci6n8g5.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fconfirm-google-auth

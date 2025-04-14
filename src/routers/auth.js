@@ -52,7 +52,7 @@ authRouter.post(
   ctrlWrapper(resetPasswordController),
 );
 
-authRouter.get('/get-oauth-url', ctrlWrapper(getGoogleOAuthUrlController));
+authRouter.post('/get-oauth-url', ctrlWrapper(getGoogleOAuthUrlController));
 
 authRouter.post(
   '/confirm-oauth',
